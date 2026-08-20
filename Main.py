@@ -60,6 +60,22 @@ class Cinema:
         else:
             print("No Customer Yet!!!")
 
+    def book_ticket(self, ticket_info):
+        self.booking.append(ticket_info)
+        print("Ticket Booked successfully ✔")
+
+
+
+    def display_bookings(self):
+        if self.booking:
+            for i in self.booking:
+                i.show_booking()
+        else:
+            print("No Booking yet...")
+
+
+
+
 class Movie:
     def __init__(self, movie_id, movie_name, genre, duration, price):
         self.movie_id = movie_id
@@ -100,3 +116,18 @@ class Booking:
         self.quantity = quantity
         self.total_price = total_price
         self.status = "booked"
+
+    def calculate_total(self):
+        self.total_price = self.movie.price * self.quantity
+        return self.total_price
+
+    def show_booking(self):
+        print(
+            f"ID : {self.booking_id} | "
+            f"Customer : {self.customer.name} | "
+            f"Movie : {self.movie.movie_name} | "
+            f"Seat_No : {self.seat_no} | "
+            f"Quantity : {self.quantity} | "
+            f"Total Price : {self.total_price} | "
+            f"Status : {self.status}"
+        )
