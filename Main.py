@@ -208,3 +208,77 @@ def Menu():
         elif choice == '5':
             obj.display_customers()
 
+        elif choice == '6':
+
+            booking_id = input("Enter Booking Id: ")
+
+            customer_id = input("Enter Customer ID: ")
+            customer = obj.search_customer(customer_id)
+
+            if customer is None:
+                print("Customer not found. Booking cancelled.")
+                continue
+
+            movie_id = input("Enter Movie ID: ")
+            movie = obj.search_movie(movie_id)
+
+            if movie is None:
+                print("Movie not found. Booking cancelled.")
+                continue
+
+            seat_no = input("Enter Seat No: ")
+
+            quantity = int(
+                input("Enter quantity of tickets: ")
+            )
+
+            if quantity <= 0:
+                print("Quantity must be greater than zero.")
+                continue
+
+            ticket_info = Booking(
+                booking_id,
+                customer,
+                movie,
+                seat_no,
+                quantity,
+                0
+            )
+
+            ticket_info.calculate_total()
+            obj.book_ticket(ticket_info)
+
+
+        elif choice == '7':
+
+            print("======= List Of Bookings =======")
+            obj.display_bookings()
+
+
+        elif choice == '8':
+
+            booking_id = input("Enter Booking ID: ")
+
+            found = False
+
+            for booking in obj.booking:
+
+                if booking.booking_id == booking_id:
+                    obj.cancel_ticket(booking)
+                    found = True
+                    break
+
+            if not found:
+                print("Booking not found..")
+
+
+        elif choice == '9':
+
+            print("Thanks for using Movie Theater System 🎬")
+            break
+
+
+        else:
+            print("Unknown command..")
+
+Menu()
