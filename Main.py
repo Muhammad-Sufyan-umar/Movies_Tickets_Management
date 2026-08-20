@@ -145,3 +145,66 @@ class Booking:
             )
         else:
             print("Booking already cancelled")
+
+
+
+def Menu():
+
+    obj = Cinema()
+
+    while True:
+
+        print(
+            "\n1. Add Movie\n"
+            "2. Display Movies\n"
+            "3. Search Movie\n"
+            "4. Add Customer\n"
+            "5. Display Customers\n"
+            "6. Book Ticket\n"
+            "7. Display Bookings\n"
+            "8. Cancel Ticket\n"
+            "9. Exit\n"
+        )
+
+        choice = input("Enter choice: ")
+
+        if choice == '1':
+            movie_id = input("Enter Movie id: ")
+            movie_name = input("Enter Movie name: ")
+            genre = input("Enter genre: ")
+            duration = input("Enter duration: ")
+            price = int(input("Enter price: "))
+
+            movie = Movie(
+                movie_id,
+                movie_name,
+                genre,
+                duration,
+                price
+            )
+
+            obj.add_movie(movie)
+
+        elif choice == '2':
+            obj.display_movies()
+
+        elif choice == '3':
+            movie_id = input("Enter movie id: ")
+            obj.search_movie(movie_id)
+
+        elif choice == '4':
+            customer_id = input("Enter customer Id: ")
+            name = input("Enter Name: ")
+            email = input("Enter Email: ")
+
+            customer = Customer(
+                customer_id,
+                name,
+                email
+            )
+
+            obj.add_customer(customer)
+
+        elif choice == '5':
+            obj.display_customers()
+
