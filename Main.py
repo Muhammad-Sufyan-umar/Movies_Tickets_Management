@@ -35,7 +35,30 @@ class Cinema:
             print("No Movies Yet!!!")
 
 	
-    
+    def add_customer(self, customer):
+        self.customers.append(customer)
+        print("Customer added successfully..")
+
+
+    def search_customer(self, customer_id):
+        if self.customers:
+            for i in self.customers:
+                if i.customer_id == customer_id:
+                    print("Customer Found..")
+                    i.show_info()
+                    return i
+
+            print("Customer Not found")
+        else:
+            print("No Customer Yet")
+
+
+    def display_customers(self):
+        if self.customers:
+            for i in self.customers:
+                i.show_info()
+        else:
+            print("No Customer Yet!!!")
 
 class Movie:
     def __init__(self, movie_id, movie_name, genre, duration, price):
@@ -59,6 +82,13 @@ class Customer:
         self.customer_id = customer_id
         self.name = name
         self.email = email
+
+    def show_info(self):
+        print(
+            f"ID : {self.customer_id} | "
+            f"Name : {self.name} | "
+            f"Email : {self.email}"
+        )
 
 
 class Booking:
