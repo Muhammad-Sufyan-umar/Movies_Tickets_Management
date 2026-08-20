@@ -74,7 +74,11 @@ class Cinema:
             print("No Booking yet...")
 
 
-
+    def cancel_ticket(self, ticket_info):
+        if ticket_info in self.booking:
+            ticket_info.cancel_booking()
+        else:
+            print("Booking not found..")
 
 class Movie:
     def __init__(self, movie_id, movie_name, genre, duration, price):
@@ -131,3 +135,13 @@ class Booking:
             f"Total Price : {self.total_price} | "
             f"Status : {self.status}"
         )
+
+    def cancel_booking(self):
+        if self.status == "booked":
+            self.status = "cancelled"
+            print(
+                f"Booking {self.booking_id} "
+                f"cancelled successfully.."
+            )
+        else:
+            print("Booking already cancelled")
